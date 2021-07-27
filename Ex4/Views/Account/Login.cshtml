@@ -1,4 +1,7 @@
 ﻿@model Ex4.ViewModels.LoginViewModel
+@{
+    ViewData["Title"] = "Login";
+}
 <h1>Login</h1>
 
 <hr />
@@ -21,4 +24,9 @@
             </div>
         </form>
     </div>
+</div>
+
+<div>
+    <a asp-controller="Account" asp-action="Register">Register</a>
+    <a asp-controller="Home" asp-action="Index">Back</a>
 </div>
