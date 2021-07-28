@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace Ex4.Controllers
 {
@@ -27,8 +28,21 @@ namespace Ex4.Controllers
         }
 
         [HttpPost]
-        public IActionResult Select(string checkbox)
+        public IActionResult Delete(string ids)
         {
+            if(ids == null)
+                return Redirect("Index");
+            string[] idsSplit = ids.Split(',');
+            Models.User[] users = new User[idsSplit.Length];
+            for(int i = 0; i< idsSplit.Length; i++)
+            {
+                 users[i] = _userManager.FindByIdAsync(idsSplit[i]).Result;
+            }
+
+            for (int i = 0; i < idsSplit.Length; i++)
+            {
+                _userManager.DeleteAsync(users[i]);
+            }
             return Redirect("Index");
         }
     }

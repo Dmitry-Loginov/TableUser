@@ -2,18 +2,27 @@
 @{
     ViewData["Title"] = "List";
 }
-
 <h2>List</h2>
+<form method="post" asp-controller="Users" asp-action="Unblock" style="display:inline;">
+    <input id="Sender" type="text" name="ids" value="" style="visibility:hidden; position:absolute;" />
+    <input type="submit" value="Unblock" class="btn btn-primary" style="margin:2px; display:inline;">
+</form>
+<form method="post" asp-controller="Users" asp-action="Block" style="display:inline;">
+    <input id="Sender" type="text" name="ids" value="" style="visibility:hidden; position:absolute;" />
+    <input type="submit" value="Block" class="btn btn-warning" style="margin:2px; display:inline;">
+</form>
+<form method="post" asp-controller="Users" asp-action="Delete" style="display:inline;">
+    <input id="Sender" type="text" name="ids" value="" style="visibility:hidden; position:absolute;" />
+    <input type="submit" value="Delete" class="btn btn-danger" style="margin:2px; display:inline;">
+</form>
 <table class="table">
 
     <thead>
         <tr>
             <th>
-                <form method="post" class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="CheckBoxGeneral" onclick="SelectAll()">
-                    <label class="form-check-label" for="defaultCheck1">All
-                    </label>
-                </form>
+                <input class="form-check-input" type="checkbox" value="" id="CheckBoxGeneral" onclick="SelectAll()">
+                <label class="form-check-label">All
+                </label>
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Id)
@@ -40,10 +49,11 @@
          {
             <tr>
                 <td>
-                    <form method="post" class="form-check" asp-controller="Users" asp-action="Select">
-                        <input value="@item.Id.ToString()" name="checkbox" class="form-check-input position-static single-check-box" aria-label="..." type="checkbox" onclick="Select()"
-                              >
+                    <form method="post">
+                        <input value="@item.Id" name="check" class="form-check-input position-static single-check-box"
+                               aria-label="..." type="checkbox" onclick="Select(this.form.check.value)">
                     </form>
+                    
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Id)

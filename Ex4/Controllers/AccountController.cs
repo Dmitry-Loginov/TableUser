@@ -69,6 +69,7 @@ namespace Ex4.Controllers
                 {
                     User user = _userManager.FindByEmailAsync(model.Email).Result;
                     user.DateLastLogin = DateTime.Now.Date;
+                    await _userManager.UpdateAsync(user);
 
                     if (!string.IsNullOrEmpty(model.ReturnUrl) && Url.IsLocalUrl(model.ReturnUrl))
                     {

@@ -16,13 +16,19 @@ function SelectAll() {
     }
 }
 
-function Select() {
+function Select(id) {
+    var ids = [];
+    var isTrueSelectAll = true;
     var checkBoxes = document.getElementsByClassName("single-check-box");
     for (let i = 0; i < checkBoxes.length; i++) {
         if (checkBoxes[i].checked == false) {
-            document.getElementById("CheckBoxGeneral").checked = false;
-            return;
+            isTrueSelectAll = false;
+        }
+        else {
+            ids.push(checkBoxes[i].value);
         }
     }
-    document.getElementById("CheckBoxGeneral").checked = true;
+    var sender = document.getElementById("Sender");
+    sender.setAttribute("value", ids);
+    document.getElementById("CheckBoxGeneral").checked = isTrueSelectAll;
 }
