@@ -14,27 +14,18 @@
                 <p>Change action</p>
             </div>
 
-            @if (User.Identity.IsAuthenticated)
-            {
-                <p>@User.Identity.Name</p>
+            
+            <div style="        display: flex;
+                -ms-flex-direction: column;
+                -webkit-flex-direction: column;
+                flex-direction: column;
+                -webkit-justify-content: center;
+                justify-content: center;">
 
-                <form method="post" asp-controller="Account" asp-action="Logout">
-                    <input type="submit" value="Logout" />
-                </form>
-            }
-            else
-            {
-                <div style="        display: flex;
-        -ms-flex-direction: column;
-        -webkit-flex-direction: column;
-        flex-direction: column;
-        -webkit-justify-content: center;
-        justify-content: center;">
-                    <a asp-controller="Account" asp-action="Login" class="btn btn-primary" style="width: 200px; margin:2px auto;">Login</a>
-                    <a asp-controller="Account" asp-action="Register" class="btn btn-primary" style="width:200px; margin:2px auto;">Register</a>
-                </div>
+                <a asp-controller="Account" asp-action="Login" class="btn btn-primary" style="width: 200px; margin:2px auto;">Login</a>
+                <a asp-controller="Account" asp-action="Register" class="btn btn-primary" style="width:200px; margin:2px auto;">Register</a>
+            </div>
 
-            }
         </div>
     </div>
 

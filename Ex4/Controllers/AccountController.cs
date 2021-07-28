@@ -17,6 +17,7 @@ namespace Ex4.Controllers
             _userManager = userManager;
             _signInManager = signInManager;
         }
+
         [HttpGet]
         public IActionResult Register()
         {
@@ -32,7 +33,7 @@ namespace Ex4.Controllers
                 if (result.Succeeded)
                 {
                     await _signInManager.SignInAsync(user, false);
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Index", "Users");
                 }
                 else
                 {
@@ -48,6 +49,10 @@ namespace Ex4.Controllers
         [HttpGet]
         public IActionResult Login(string returnUrl = null)
         {
+            if (User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("Index", "Users");
+            }
             return View(new LoginViewModel { ReturnUrl = returnUrl });
         }
 
@@ -57,14 +62,12 @@ namespace Ex4.Controllers
         {
             if (ModelState.IsValid)
             {
-                Microsoft.AspNetCore.Identity.SignInResult result = default;
-
-                    result =
+                var result =
                         await _signInManager.PasswordSignInAsync(model.Email, model.Password, false, false);
                     
                 if (result.Succeeded)
                 {
-                    Models.User user = _userManager.FindByEmailAsync(model.Email).Result;
+                    User user = _userManager.FindByEmailAsync(model.Email).Result;
                     user.DateLastLogin = DateTime.Now.Date;
 
                     if (!string.IsNullOrEmpty(model.ReturnUrl) && Url.IsLocalUrl(model.ReturnUrl))
@@ -73,7 +76,7 @@ namespace Ex4.Controllers
                     }
                     else
                     {
-                        return RedirectToAction("Index", "Home");
+                        return RedirectToAction("Index", "Users");
                     }
                 }
                 else

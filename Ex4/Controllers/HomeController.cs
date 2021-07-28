@@ -1,11 +1,7 @@
 ﻿using Ex4.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Ex4.Controllers
 {
@@ -20,11 +16,7 @@ namespace Ex4.Controllers
 
         public IActionResult Index()
         {
-            return View();
-        }
-
-        public IActionResult Privacy()
-        {
+            
             return View();
         }
 

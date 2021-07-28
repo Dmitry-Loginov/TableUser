@@ -12,6 +12,13 @@
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container">
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <span>@User.Identity.Name</span>
+                    <form method="post" asp-controller="Account" asp-action="Logout" style="display:inline;">
+                        <input type="submit" value="Выход" class="btn btn-primary" style="display:inline;"/>
+                    </form>
+                }
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -29,6 +36,8 @@
         <div class="container">
             &copy; 2021 - TableUser - <a asp-area="" asp-controller="Home" asp-action="Index">Home</a>
         </div>
+
+        
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
