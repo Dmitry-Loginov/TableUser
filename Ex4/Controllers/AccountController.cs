@@ -23,6 +23,7 @@ namespace Ex4.Controllers
         {
             return View();
         }
+
         [HttpPost]
         public async Task<IActionResult> Register(RegisterViewModel model)
         {
@@ -68,6 +69,11 @@ namespace Ex4.Controllers
                 if (result.Succeeded)
                 {
                     User user = _userManager.FindByEmailAsync(model.Email).Result;
+                    if(user.Status == Status.Block)
+                    {
+                        ModelState.AddModelError("", "The user is blocked");
+                        return View(model);
+                    }
                     user.DateLastLogin = DateTime.Now.Date;
                     await _userManager.UpdateAsync(user);
 

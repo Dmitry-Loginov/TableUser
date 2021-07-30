@@ -6,6 +6,7 @@
     <title>@ViewData["Title"] - TableUser</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
+    <script src="https://kit.fontawesome.com/f2dd12661d.js" crossorigin="anonymous"></script>
 </head>
 <body>
     <header>
@@ -16,7 +17,7 @@
                 {
                     <span>@User.Identity.Name</span>
                     <form method="post" asp-controller="Account" asp-action="Logout" style="display:inline;">
-                        <input type="submit" value="Выход" class="btn btn-primary" style="display:inline;"/>
+                        <input type="submit" value="Sign out" class="btn btn-primary" style="display:inline;" />
                     </form>
                 }
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
@@ -37,7 +38,7 @@
             &copy; 2021 - TableUser - <a asp-area="" asp-controller="Home" asp-action="Index">Home</a>
         </div>
 
-        
+
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>

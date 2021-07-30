@@ -19,24 +19,24 @@ namespace Ex4.Models
             DateRegistration = DateTime.Now.Date;
             DateLastLogin = DateTime.Now.Date;
             Status = Status.Active;
-            TestStr = "Test";
         }
 
         [Required]
         [MaxLength(100)]
+        [Display(Name ="Nick")]
         public string NickName { get; set; }
 
         [Required]
         [DataType(DataType.Date)]
+        [Display(Name = "Registration date")]
         public DateTime DateRegistration { get; set; }
 
         [Required]
         [DataType(DataType.Date)]
+        [Display(Name = "Date of last login")]
         public DateTime DateLastLogin { get; set; }
 
         [Required]
         public Status Status { get; set; }
-        [Required]
-        public string TestStr { get; set; }
     }
 }
